@@ -1,0 +1,87 @@
+Add Material
+>ng add @angular/material
+
+--app.component.html--
+<div class="container">
+  <form (ngSubmit)="print()">
+
+
+    <label for="myname">
+      Name:
+      <mat-form-field appearance="outline">
+        <mat-label>Abrar</mat-label>
+        <input matInput type="text" [(ngModel)]="data.myname" name="myname" placeholder="Name....">
+      </mat-form-field>
+    </label>
+    <br>
+
+    <label for="name">
+      Email: <input type="email" [(ngModel)]="data.email" name="email">
+    </label>
+    <br>
+
+    <label for="name">
+      Phone: <input type="number" [(ngModel)]="data.phone" name="phone">
+    </label>
+
+    <br>
+    <!-- <mat-button></mat-button> -->
+
+    <button mat-raised-button color="accent">Submit</button>
+  </form>
+</div>
+
+--app.component.ts
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  title = 'exp-3';
+
+  data = {
+    myname: '',
+    email: '',
+    phone: 0
+  }
+
+  print() {
+    console.log(this.data);
+
+  }
+}
+
+
+--app.module.ts--
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+
+import { AppComponent } from './app.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
+
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    FormsModule,
+    MatButtonModule,
+    MatInputModule,
+    MatFormFieldModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+
+
