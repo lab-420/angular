@@ -1,0 +1,64 @@
+app.component.html
+
+<div class="main">
+  <h1>To Do List</h1>
+  <input type="text" #task>
+  <button (click)="add(task.value)">Add task</button>
+</div>
+<hr>
+
+<div class="content">
+  <ul *ngFor="let item of list">
+    <li><span>
+        {{item.id}} &nbsp; {{item.task}}
+      </span>
+
+
+      <button (click)="remove(item.id)">remove</button>
+    </li>
+  </ul>
+</div>
+
+app.component.ts
+
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  title = 'exp-8';
+  list: any[] = [];
+
+  data = {
+    id: 0,
+    task: ''
+  }
+
+  currentindex = 0;
+
+  add(temp: string) {
+    this.list.push({ id: this.currentindex, task: temp });
+    this.currentindex++;
+  }
+
+  remove(id: number) {
+    this.list = this.list.filter(item => item.id !== id);
+  }
+}
+
+
+app.component.css
+.main {
+    width: 25%;
+    margin: auto;
+    text-align: center;
+}
+
+.content {
+    width: 25%;
+    margin: auto;
+    /* text-align: center; */
+}
