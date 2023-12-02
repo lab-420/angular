@@ -1,0 +1,92 @@
+ng add @aanngular/material
+
+ng g c stud
+
+ng g c fac
+
+--app.module.ts--
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { StudComponent } from './stud/stud.component';
+import { FacComponent } from './fac/fac.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { MatButtonModule } from '@angular/material/button';
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    StudComponent,
+    FacComponent
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatButtonModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+
+
+--app.component.html--
+<div class="header">
+  <button mat-raised-button (click)="fac()" color="accent">Faculty</button>
+  <button mat-raised-button (click)="stud()" color="primary">Student</button>
+</div>
+
+<router-outlet></router-outlet>
+
+--app.component.ts--
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  title = 'exp-4';
+
+  constructor(private router: Router) { }
+
+  fac() {
+    this.router.navigate(['faculty']);
+  }
+
+  stud() {
+    this.router.navigate(['student']);
+  }
+}
+
+
+--app.routing.module.ts--
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { StudComponent } from './stud/stud.component';
+import { FacComponent } from './fac/fac.component';
+
+const routes: Routes = [
+  {
+    path: 'student',
+    component: StudComponent
+  },
+  {
+    path: 'faculty',
+    component: FacComponent
+  }
+];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule { }
+
+
