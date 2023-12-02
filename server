@@ -50,11 +50,59 @@ import { HttpClientModule } from '@angular/common/http';
 export class AppModule { }
 
 
---create a service
+create a service
 >ng generate service fetch
 
 fetch.service.ts
 
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http'
+import { Observable } from 'rxjs';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class FetchService {
+
+  constructor(private http: HttpClient) { }
+
+  public fetch(): Observable<any> {
+    return this.http.get<any>('https://jsonplaceholder.typicode.com/users');
+  }
+}
+
+app.component.ts
+
+import { Component } from '@angular/core';
+import { FetchService } from './fetch.service';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  title = 'exp-6';
+
+  constructor(private service: FetchService) { }
+
+  list: any[] = [];
+
+  display() {
+    this.service.fetch().subscribe(
+      response => {
+        this.list = response;
+      },
+      error => {
+        console.log('Error');
+
+      }
+    )
+  }
+
+
+
+}
 
 
 
