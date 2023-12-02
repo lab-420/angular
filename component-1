@@ -1,0 +1,51 @@
+ng new myproject
+cd myproject
+ng g c form
+
+--app.comonent.html--
+<app-form></app-form>
+
+--form.component.html--
+
+<div class="container">
+    <form>
+        <div class="card">
+            <label for="sal">
+                salutation :
+                <select name="salutation">
+                    <option value="">Mr.</option>
+                    <option value="">Mrs.</option>
+                    <option value="">Dr.</option>
+                </select>
+            </label>
+            <br>
+
+            <label for="name">
+                Name :
+                <input type="text">
+            </label>
+            <br>
+
+            <label for="email">
+                Email:
+                <input type="email" name="email" id="">
+            </label>
+            <br>
+
+            <label for="dob">
+                DOB:
+                <input type="date" name="dob" id="">
+            </label>
+            <br>
+            <label for="address">
+                Address:
+            </label>
+            <!-- <input type="t" name="" id=""> -->
+            <textarea name="address" id="" cols="30" rows="10"></textarea>
+            <br>
+            <button type="submit">Submit</button>
+        </div>
+    </form>
+</div>
+
+ng serve
